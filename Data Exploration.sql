@@ -1,5 +1,7 @@
 /*
-Data Exploration Project
+Covid Data Exploration Project
+
+Skills used: Joins, CTE's, Temp Tables, Windows Functions, Aggregate Functions, Creating Views, Converting Data Types, Having
 */
 
 -- Selecting all the data we have in our CovidDeaths file
@@ -35,7 +37,7 @@ ORDER BY 1, 2
 -- Shows what percentage of population got Covid
 -- not null
 
-SELECT location, date, population, total_cases, (total_cases/population)*100 AS Affected_Percentage
+SELECT location, date, population, total_cases, (total_cases/population)*100 AS Infected_Percentage
 FROM Portfolio_Projects.dbo.CovidDeaths
 WHERE continent IS NOT NULL
 ORDER BY 1, 2
@@ -48,12 +50,12 @@ ORDER BY 1, 2
 -- Order by highest
 -- Used Max to get maximum value of cases and population while grouping
 
-SELECT location, population, MAX(total_cases) AS Highest_Infection, MAX((total_cases/population)*100) AS Highest_Affected_Percentage
+SELECT location, population, MAX(total_cases) AS Highest_Infection, MAX((total_cases/population)*100) AS Highest_Infected_Percentage
 FROM Portfolio_Projects.dbo.CovidDeaths
 WHERE continent IS NOT NULL
 GROUP BY location, population
 Having MAX((total_cases/population)*100) IS NOT NULL
-ORDER BY Highest_Affected_Percentage DESC
+ORDER BY Highest_Infected_Percentage DESC
 
 
 
